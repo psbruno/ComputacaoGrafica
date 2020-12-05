@@ -7,7 +7,12 @@
 int n = 50;
 float ang = 50;
 float x,y;
+void desenharCirculo() { }
 
+
+
+void setajanela(){
+}
 void primeiro(){
    int i;
    float angulo =0;
@@ -15,7 +20,7 @@ void primeiro(){
     glColor3f(0.0,0.0,1.0);
     glBegin(GL_POLYGON);
         for(i=0;i<50;i++){
-            glVertex2f(0.05*cos(angulo),0.05*sin(angulo));
+            glVertex2f(0.05*cos(angulo)-1,0.05*sin(angulo)+1);
             angulo = angulo+(2*M_PI)/n;
         }
     glEnd();
