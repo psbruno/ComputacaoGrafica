@@ -8,12 +8,13 @@ int n = 50;
 float ang = 50;
 float x,y;
 float r=0,g=0,b=1;
-float a=0,B=0,c=0,d=0;
+float a=-1000,B=1000,c=-1000,d=1000;
 int NovaReta(){
     int num=0;
     while(num<100){
-        num=rand()%1000;
+        num=rand()%2000;
     }
+    return num-1000;
 }
 void Retas(){
     printf("%f %f %f %f\n",a,B,c,d);
