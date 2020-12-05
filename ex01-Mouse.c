@@ -15,7 +15,6 @@ void primeiro(){
 
     glClearColor(0, 0, 0, 0); //Preto
     glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(0.0,0.0,0.0);
     glPointSize(50);//aumentei o tamanho para conseguir ver 
     glColor3f(0.0,0.0, 1.0);
     glBegin(GL_POINTS);
@@ -46,7 +45,6 @@ void desenha(){
 
     glClearColor(0, 0, 0, 0); //Preto
     glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(0.0,0.0,0.0);
     glPointSize(5);
     glColor3f(0.0,0.0, 1.0);
     glBegin(GL_POINTS);
