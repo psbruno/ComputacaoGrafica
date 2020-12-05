@@ -9,15 +9,33 @@ float ang = 50;
 float x,y;
 
 void primeiro(){
-   int i;
-   float angulo =0;
+   printf("%f %f\n", x/1000,y/1000);
+    int i;
+    float angulo=0;
+
+    glClearColor(0, 0, 0, 0); //Preto
     glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(0.0,0.0,1.0);
-    glBegin(GL_POLYGON);
-        for(i=0;i<50;i++){
-            glVertex2f(0.05*cos(angulo)-1,0.05*sin(angulo)+1);
-            angulo = angulo+(2*M_PI)/n;
+    glColor3f(0.0,0.0,0.0);
+    glPointSize(50);//aumentei o tamanho para conseguir ver 
+    glColor3f(0.0,0.0, 1.0);
+    glBegin(GL_POINTS);
+        glVertex2f((4*x/1000-1), (1-4*y/1000));
+
+
+        //para o pontos circulares:
+/*
+        glClear(GL_COLOR_BUFFER_BIT);
+        glBegin(GL_POLYGON);
+        glColor3f(0.0,0.0, 1.0);
+        for(i=0;i<500;i++){
+            angulo = 2* PI * i / 50;
+            //if(i==1 || i==100)printf("__%f %f\n",0.05*cos(angulo), 0.05*sin(angulo) );
+            glVertex2f(0.05*cos(angulo)+(4*x/1000-1),0.05*sin(angulo)+(1-4*y/1000));
+            //glVertex2f(0.05*cos(angulo)+ x/1000+0.3,0.05*sin(angulo)+y/1000-0.3);
         }
+*/
+        //para pontos circulares
+
     glEnd();
     glFlush();
 }
@@ -25,18 +43,30 @@ void desenha(){
     printf("%f %f\n", x/1000,y/1000);
     int i;
     float angulo=0;
-//glClearColor(0, 0, 0, 0); //Preto
-    glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(0.0,0.0,1.0);
 
-    glBegin(GL_POLYGON);
+    glClearColor(0, 0, 0, 0); //Preto
+    glClear(GL_COLOR_BUFFER_BIT);
+    glColor3f(0.0,0.0,0.0);
+    glPointSize(5);
+    glColor3f(0.0,0.0, 1.0);
+    glBegin(GL_POINTS);
+        glVertex2f((4*x/1000-1), (1-4*y/1000));
+
+
+        //para pontos circulares:
+/*
+        glClear(GL_COLOR_BUFFER_BIT);
+        glBegin(GL_POLYGON);
+        glColor3f(0.0,0.0, 1.0);
         for(i=0;i<500;i++){
             angulo = 2* PI * i / 50;
             //if(i==1 || i==100)printf("__%f %f\n",0.05*cos(angulo), 0.05*sin(angulo) );
             glVertex2f(0.05*cos(angulo)+(4*x/1000-1),0.05*sin(angulo)+(1-4*y/1000));
             //glVertex2f(0.05*cos(angulo)+ x/1000+0.3,0.05*sin(angulo)+y/1000-0.3);
         }
-        //printf("--%f %f\n",0.05*cos(angulo)-0.7, 0.05*sin(angulo)-0.7 );
+*/
+        //para pontos circulares
+
     glEnd();
     glFlush();
 }
