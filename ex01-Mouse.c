@@ -7,12 +7,7 @@
 int n = 50;
 float ang = 50;
 float x,y;
-void desenharCirculo() { }
 
-
-
-void setajanela(){
-}
 void primeiro(){
    int i;
    float angulo =0;
@@ -35,7 +30,7 @@ void desenha(){
     glColor3f(0.0,0.0,1.0);
 
     glBegin(GL_POLYGON);
-        for(i=0;i<50;i++){
+        for(i=0;i<500;i++){
             angulo = 2* PI * i / 50;
             //if(i==1 || i==100)printf("__%f %f\n",0.05*cos(angulo), 0.05*sin(angulo) );
             glVertex2f(0.05*cos(angulo)+(4*x/1000-1),0.05*sin(angulo)+(1-4*y/1000));
@@ -55,11 +50,6 @@ void MouseInt (int botao, int estado, int xl, int yl){
               y=yl;
 
           break;
-       case GLUT_RIGHT_BUTTON:
-          if(estado == GLUT_DOWN){
-
-          }
-          break;
     }
     glutPostRedisplay();
 }
@@ -70,7 +60,7 @@ int main( int argc, char *argv[ ] ){
     glutInitWindowSize(500,500);
     glutInit(&argc, argv);
     glutCreateWindow("Circulo em torno do click");
-    glutDisplayFunc(setajanela);
+ //   glutDisplayFunc(setajanela);
     glutDisplayFunc (primeiro);
     glutMouseFunc(MouseInt);
     glutMainLoop ();
