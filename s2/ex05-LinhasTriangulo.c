@@ -4,15 +4,19 @@
 #include <GL/glut.h>
 #include <math.h>
 # define PI 3.141592654
+
 int n = 50;
 float ang = 50;
 float x,y;
 float r=0,g=0,b=1;
 float a=-1000,B=1000,c=-1000,d=1000;
-float p1x=0,p1y=0;
-float p2x=0,p2y=0;
-float p3x=0,p3y=0;
+float pts[6]={0,0,0,0,0,0};
+int i=0,j=0;
+char letra='0';
 
+/*float p1x=1,p1y=1;
+float p2x=1,p2y=-1;
+float p3x=0,p3y=1;*/
 int NovaReta(){
     int num=0;
     while(num<100){
@@ -21,8 +25,8 @@ int NovaReta(){
     return num-1000;
 }
 void Retas(){
-    printf("%f %f %f %f\n",a,B,c,d);
-    glClearColor(0, 0, 0, 0); //Preto
+
+     glClearColor(0, 0, 0, 0); //Preto
     glClear(GL_COLOR_BUFFER_BIT);
 
     glColor3f(r,g,b);
@@ -35,16 +39,48 @@ void Retas(){
     glEnd();
     glFlush();
 }
+void SetaRetas(){
+    a=NovaReta();
+    B=NovaReta();
+    c=NovaReta();
+    d=NovaReta();
+    glutDisplayFunc(Retas);
+}
 void triangulo(){
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT);
     glBegin(GL_TRIANGLES);
-        glVertex2f(p1x,p1y);
-        glVertex2f(p2x,p2y);
-        glVertex2f(p3x,p3y);;
+       glColor3f(r, g, b); glVertex2f(pts[0],pts[1]);
+       glColor3f(r, g, b); glVertex2f(pts[2], pts[3]);
+       glColor3f(r, g, b); glVertex2f(pts[4], pts[5]);
     glEnd();
     glFlush();
 }
+
+void MouseInt (int botao, int estado, int cx, int cy){
+    switch(botao){
+       case GLUT_LEFT_BUTTON:
+          if(estado == GLUT_DOWN){
+            x=cx;
+            y=cy;
+           pts[i]=(4*x/1000-1);
+           pts[i+1]= (1-4*y/1000);
+           i++, i++;
+           for(int j=0;j<6;j++)
+                printf("%f ", pts[j]);
+           printf("\n\n");
+
+            if(i==6){
+              i=0;
+            }
+          }
+          break;
+    }
+
+    glutPostRedisplay();
+    }
+    //letra='0';
+
 void Teclado(unsigned char key, int x, int y){
     switch (key){
         case '0' :
@@ -108,25 +144,20 @@ void Teclado(unsigned char key, int x, int y){
             g=1;
             b=0.6;
         break;
+        case 'R':
+        case 'r':
+            SetaRetas();
+            break;
+        case 'T':
+        case 't':
+           glutDisplayFunc(triangulo);
+
+        break;
     }
     glutPostRedisplay() ;
 
 }
-void MouseInt (int botao, int estado, int xl, int yl){
 
-    switch(botao){
-       case GLUT_LEFT_BUTTON:
-          if(estado == GLUT_DOWN){
-             a=NovaReta();
-             B=NovaReta();
-             c=NovaReta();
-             d=NovaReta();
-             glutDisplayFunc(Retas);
-          }
-          break;
-    }
-    glutPostRedisplay();
-}
 
 
 int main( int argc, char *argv[ ] ){
@@ -134,11 +165,11 @@ int main( int argc, char *argv[ ] ){
     glutInitWindowPosition(500,100);
     glutInitWindowSize(500,500);
     glutInit(&argc, argv);
-    glutCreateWindow("Linhas e Triangulos");
-    glutDisplayFunc(Retas);
-    glutDisplayFunc(triangulo);
-    glutMouseFunc(MouseInt);
+    glutCreateWindow("Linhas");
     glutKeyboardFunc(Teclado);
+    glutDisplayFunc(Retas);
+    glutMouseFunc(MouseInt);
+    //glutDisplayFunc(triangulo);
     glutMainLoop ();
     return 0;
 }
