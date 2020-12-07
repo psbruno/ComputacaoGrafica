@@ -11,7 +11,7 @@ float x,y;
 float r=0,g=0,b=1;
 float a=-1000,B=1000,c=-1000,d=1000;
 float pts[6]={0,0,0,0,0,0};
-int i=0,j=0;
+int i=0,j=0,k=0;
 char letra='0';
 
 /*float p1x=1,p1y=1;
@@ -33,8 +33,8 @@ void Retas(){
 
     glBegin(GL_LINES);
 
-    glVertex2f (a/1000 ,B/1000);
-    glVertex2f (c/1000, d/1000);
+    glVertex2f (a ,B);
+    glVertex2f (c, d);
 
     glEnd();
     glFlush();
@@ -69,10 +69,31 @@ void MouseInt (int botao, int estado, int cx, int cy){
            for(int j=0;j<6;j++)
                 printf("%f ", pts[j]);
            printf("\n\n");
-
+            if(i==2){
+                /*pts[2]=pts[0];
+                pts[3]=pts[1];*/
+                pts[4]=pts[0];
+                pts[5]=pts[1];
+            }
             if(i==6){
               i=0;
             }
+            if(k==0){
+                x=cx;
+                y=cy;
+                a=(4*x/1000-1);
+                B= (1-4*y/1000);
+                c=a;
+                d=B;
+                k++;
+             }else{
+                k=0;
+                x=cx;
+                y=cy;
+                c=(4*x/1000-1);
+                d= (1-4*y/1000);
+             }
+
           }
           break;
     }
@@ -146,7 +167,7 @@ void Teclado(unsigned char key, int x, int y){
         break;
         case 'R':
         case 'r':
-            SetaRetas();
+            glutDisplayFunc(Retas);
             break;
         case 'T':
         case 't':
