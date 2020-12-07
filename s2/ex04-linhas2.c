@@ -7,17 +7,17 @@
 int n = 50;
 float ang = 50;
 float x,y;
-float r=1,g=1,b=1;
-float a=NULL,B=NULL,c=NULL,d=NULL;
-int NovaReta(){
+float r=0,g=0,b=1;
+float a=-1,B=1,c=-1,d=1;
+int i=0;
+/*int NovaReta(){
     int num=0;
     while(num<100){
         num=rand()%2000;
     }
     return num-1000;
-}
+}*/
 void Retas(){
-    printf("%f %f %f %f\n",a,B,c,d);
      glClearColor(0, 0, 0, 0); //Preto
     //glClear(GL_COLOR_BUFFER_BIT);
 
@@ -25,8 +25,8 @@ void Retas(){
 
     glBegin(GL_LINES);
 
-    glVertex2f (a/1000 ,B/1000);
-    glVertex2f (c/1000, d/1000);
+    glVertex2f (a ,B);
+    glVertex2f (c, d);
 
     glEnd();
     glFlush();
@@ -98,16 +98,34 @@ void Teclado(unsigned char key, int x, int y){
     glutPostRedisplay() ;
 
 }
+void Limpa(){
+        glClear(GL_COLOR_BUFFER_BIT);
+}
 void MouseInt (int botao, int estado, int xl, int yl){
 
     switch(botao){
        case GLUT_LEFT_BUTTON:
           if(estado == GLUT_DOWN){
-             a=NovaReta();
-             B=NovaReta();
-             c=NovaReta();
-             d=NovaReta();
-             glutDisplayFunc(Retas);
+             if(i==0){
+                x=xl;
+                y=yl;
+                a=(4*x/1000-1);
+                B= (1-4*y/1000);
+                c=a;
+                d=B;
+                i++;
+             }else{
+                i=0;
+                x=xl;
+                y=yl;
+                c=(4*x/1000-1);
+                d= (1-4*y/1000);
+                glutDisplayFunc(Retas);
+             }
+
+             /*c=NovaReta();
+             d=NovaReta();*/
+
           }
           break;
     }
@@ -121,8 +139,9 @@ int main( int argc, char *argv[ ] ){
     glutInitWindowSize(500,500);
     glutInit(&argc, argv);
     glutCreateWindow("Linhas");
-    glutDisplayFunc(Retas);
+
     glutMouseFunc(MouseInt);
+    glutDisplayFunc(Retas);
     glutKeyboardFunc(Teclado);
     glutMainLoop ();
     return 0;
