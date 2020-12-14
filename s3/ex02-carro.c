@@ -130,7 +130,7 @@ int main(int argc, char **argv)
     glutInitWindowPosition(50,100);
     glutInitWindowSize(400,400);
     glutInit(&argc, argv);
-    glutCreateWindow("Flor");
+    glutCreateWindow("Carro");
     //init();
     glutDisplayFunc(display_function);
     glutSpecialFunc(tecladoEspecial);
