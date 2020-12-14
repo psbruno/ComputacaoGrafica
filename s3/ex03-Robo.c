@@ -25,23 +25,63 @@ void display_function()
         glVertex2f(-0.1,-0.2);
     glEnd();
 
-     glBegin(GL_POLYGON);
-        glColor3f(1.0,1.0,1.0);
-        glVertex2f(-0.1,-0.2);
-        glVertex2f(-0.05,-0.2);
 
-        glVertex2f(-0.05,-0.8);
-        glVertex2f(-0.1,-0.8*cos(tx));
-    glEnd();
 
     glBegin(GL_POLYGON);
-        glColor3f(1.0,1.0,1.0);
+        glColor3f(0.4,0.4,0.4);
         glVertex2f(-0.1,-0.2);
         glVertex2f(-0.05,-0.2);
         glVertex2f(-0.05,-0.8);
         glVertex2f(-0.1,-0.8);
     glEnd();
 
+     glBegin(GL_POLYGON);
+     glColor3f(0.4,0.4,0.4);
+        glVertex2f(0.1,-0.2);
+        glVertex2f(0.05,-0.2);
+        glVertex2f(0.05,-0.8);
+        glVertex2f(0.1,-0.8);
+    glEnd();
+
+     glBegin(GL_POLYGON);
+     //braco direito
+     glColor3f(0.4,0.4,0.4);
+        glVertex2f(0.1,0.3);
+        glVertex2f(0.35+tx/2,0.2+ty/2);
+        glVertex2f(0.35+tx/2,0.1+ty/2);
+        glVertex2f(0.1,0.2);
+    glEnd();
+
+
+     glBegin(GL_POLYGON);
+        glColor3f(0.6,0.2,0.6);
+        glVertex2f(0.05,-0.2);
+        glVertex2f(-0.05,-0.2);
+        glVertex2f(0.0+tx,-0.8+tx);
+    glEnd();
+
+
+    glBegin(GL_POLYGON);
+    //braco esquerdo
+     glColor3f(0.4,0.4,0.4);
+        glVertex2f(-0.1,0.3);
+        glVertex2f(-0.35+tx/2,0.2+ty/2);
+        glVertex2f(-0.35+tx/2,0.1+ty/2);
+        glVertex2f(-0.1,0.2);
+    glEnd();
+     glBegin(GL_POLYGON);
+        glColor3f(0.4,0.4,0.4);
+        glVertex2f(-0.07,0.6);
+        glVertex2f(0.07,0.6);
+        glVertex2f(0.07,0.4);
+        glVertex2f(-0.07,0.4);
+    glEnd();
+    glBegin(GL_POLYGON);
+        glColor3f(1.0,1.0,1.0);
+        glVertex2f(0.05, 0.45);
+        glVertex2f(-0.05, 0.45);
+        glVertex2f(0.0, 0.43);
+    glEnd();
 
     glFlush();
 }
@@ -49,16 +89,16 @@ void display_function()
 void tecladoEspecial(int tecla, int x, int y){
     switch (tecla) {
         case GLUT_KEY_RIGHT:
-            tx+=0.05;
+            tx+=0.5;
             break;
         case GLUT_KEY_LEFT:
-            tx-=0.05;
+            tx-=0.5;
             break;
         case GLUT_KEY_UP:
-            lado=1;
+            ty=0.5;
             break;
         case GLUT_KEY_DOWN:
-            lado=-1;
+            ty=-0.5;
             break;
         default:
             break;
