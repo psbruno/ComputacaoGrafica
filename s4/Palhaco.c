@@ -1,6 +1,6 @@
 #include <GL/glut.h>
-
-GLUquadricObj *obj;
+//Clique com o botão direito - Rotação automatica
+//Setas - Rotação manual
 
 int objId = 1;
 float angX = 0;
